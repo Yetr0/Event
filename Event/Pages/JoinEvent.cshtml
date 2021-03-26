@@ -1,0 +1,74 @@
+﻿@page
+@model Event.Pages.JoinEventModel
+
+@{
+    ViewData["Title"] = "JoinEvent";
+}
+
+<h1>JoinEvent</h1>
+
+<div>
+    <h4>Events</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Event.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Event.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Event.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Event.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Event.Place)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Event.Place)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Event.Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Event.Address)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Event.Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Event.Date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Event.SpotsAvailable)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Event.SpotsAvailable)
+        </dd>
+    </dl>
+</div>
+<div>
+    @{
+        if (!Model.Event.Attendees.Contains(Model.attendee))
+        {
+            <form method="post">
+                <input type="submit" value="Join Event" />
+            </form>
+        }
+        else
+        {
+            <p>You've already joined this event</p>
+        }
+    }
+    <a asp-page="./Events">Back</a>
+</div>
+@{
+    if (Request.Method == "POST")
+    {
+        <div class="text-center bg-success">
+            <h3>You just joined an event. See all your upcoming events <a asp-page="./MyEvents">here</a> or <a asp-page="./Events">find other events</a></h3>
+        </div>
+    }
+}
